@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace BejegyzesProject
 {
-    internal class Program
+    internal class Bejegyzes
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine(  );
-        }
+    
     }
+
 }
