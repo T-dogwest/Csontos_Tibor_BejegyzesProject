@@ -160,11 +160,54 @@ namespace BejegyzesProject
                 Console.WriteLine($"{i + 1}. bejegyzés:\n{bLista[i]}");
             }
         }
+        static void feladat06()
+        {
+            List<Bejegyzes> bLista = new List<Bejegyzes>();
+
+           
+            using (StreamReader sr = new StreamReader("bejegyzesek.csv"))
+            {
+                string sor;
+                while ((sor = sr.ReadLine()) != null)
+                {
+                    string[] adatok = sor.Split(';');
+                    if (adatok.Length == 2)
+                    {
+                        string szerzo = adatok[0];
+                        string tartalom = adatok[1];
+                        bLista.Add(new Bejegyzes(szerzo, tartalom));
+                    }
+                }
+            }
+
+          
+            Bejegyzes nepszer = null;
+            int mlike = -1;
+
+            foreach (var bejegyzes in bLista)
+            {
+                if (bejegyzes.Likeok > mlike)
+                {
+                    mlike = bejegyzes.Likeok;
+                    nepszer = bejegyzes;
+                }
+            }
+
+            if (nepszer != null)
+            {
+                Console.WriteLine($"legnépszerűbb bejegyzés : {nepszer.Likeok}");
+            }
+            else
+            {
+                Console.WriteLine("Nincs bejegyzés.");
+            }
+        }
     
             static void Main(string[] args)
         {
-
-            feladat05();
+           
+            feladat03();
+            
           Console.ReadKey();
         }
 
