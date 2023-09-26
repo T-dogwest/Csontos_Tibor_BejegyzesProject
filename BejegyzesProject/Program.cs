@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BejegyzesProject
 {
+   
     internal class Program
     {
-        static void Main(string[] args)
+        static void feladat01()
         {
-           /* List<Bejegyzes> bLista = new List<Bejegyzes>();
+            List<Bejegyzes> bLista = new List<Bejegyzes>();
 
             bLista.Add(new Bejegyzes("sz1", "első tartalma."));
             bLista.Add(new Bejegyzes("sz2", "második tartalma."));
@@ -18,8 +20,10 @@ namespace BejegyzesProject
             foreach (Bejegyzes bejegyzes in bLista)
             {
                 Console.WriteLine(bejegyzes.ToString());
-            }*/
-
+            }
+        }
+        static void feladat02()
+        {
             List<Bejegyzes> bLista = new List<Bejegyzes>();
 
             Console.Write("Bejegyzések Száma: ");
@@ -46,10 +50,43 @@ namespace BejegyzesProject
             {
                 Console.WriteLine("pozití,egész számot írj");
             }
+        }
+        static void feladat03()
+        {
+            List<Bejegyzes> bLista = new List<Bejegyzes>();
 
+
+            using (StreamReader sr = new StreamReader("bejegyzesek.csv"))
+            {
+                string sor;
+                while ((sor = sr.ReadLine()) != null)
+                {
+                    string[] adatok = sor.Split(';');
+                    if (adatok.Length == 2)
+                    {
+                        string szerzo = adatok[0];
+                        string tartalom = adatok[1];
+                        bLista.Add(new Bejegyzes(szerzo, tartalom));
+                    }
+                }
+            }
+
+            Console.WriteLine("\nbejegyzések:");
+            foreach (Bejegyzes bejegyzes in bLista)
+            {
+                Console.WriteLine(bejegyzes.ToString());
+            }
             Console.ReadKey();
+        }
+        static void feladat04()
+        {
 
-
+        }
+            static void Main(string[] args)
+        {
+            feladat03();
+           
+          Console.ReadKey();
         }
 
     }
