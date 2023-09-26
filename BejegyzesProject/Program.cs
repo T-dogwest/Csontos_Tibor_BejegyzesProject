@@ -202,11 +202,63 @@ namespace BejegyzesProject
                 Console.WriteLine("Nincs bejegyzés.");
             }
         }
+        static void feladat07() {
+            List<Bejegyzes> bLista = new List<Bejegyzes>();
+
+
+            using (StreamReader sr = new StreamReader("bejegyzesek.csv"))
+            {
+                string sor;
+                while ((sor = sr.ReadLine()) != null)
+                {
+                    string[] adatok = sor.Split(';');
+                    if (adatok.Length == 2)
+                    {
+                        string szerzo = adatok[0];
+                        string tartalom = adatok[1];
+                        bLista.Add(new Bejegyzes(szerzo, tartalom));
+                    }
+                }
+            }
+            bool vane= bLista.Any(b => b.Likeok > 35);
+
+            if (vane)
+            {
+                Console.WriteLine("Van.");
+            }
+            else
+            {
+                Console.WriteLine("Nincs.");
+            }
+        }
+        static void feladat08()
+        {
+            List<Bejegyzes> bLista = new List<Bejegyzes>();
+
+
+            using (StreamReader sr = new StreamReader("bejegyzesek.csv"))
+            {
+                string sor;
+                while ((sor = sr.ReadLine()) != null)
+                {
+                    string[] adatok = sor.Split(';');
+                    if (adatok.Length == 2)
+                    {
+                        string szerzo = adatok[0];
+                        string tartalom = adatok[1];
+                        bLista.Add(new Bejegyzes(szerzo, tartalom));
+                    }
+                }
+            }
+            int keves = bLista.Count(b => b.Likeok <= 15);
+
+            Console.WriteLine($"15 like alatti bejegyzések száma: {keves}");
+        }
     
             static void Main(string[] args)
         {
            
-            feladat03();
+            feladat07();
             
           Console.ReadKey();
         }
