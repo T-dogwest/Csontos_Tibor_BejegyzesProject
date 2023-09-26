@@ -12,7 +12,7 @@ namespace BejegyzesProject
         public string Tartalom { get; set; }
         public int Likeok { get; private set; }
         public DateTime Letrejott { get; }
-        public DateTime Szerkesztve { get; private set; }
+        public DateTime Szerkesztve { get; set; }
 
         public Bejegyzes(string szerzo, string tartalom)
         {

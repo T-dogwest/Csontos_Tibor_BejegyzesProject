@@ -116,12 +116,55 @@ namespace BejegyzesProject
         }
         static void feladat05()
         {
+            List<Bejegyzes> bLista = new List<Bejegyzes>();
 
+            
+            using (StreamReader sr = new StreamReader("bejegyzesek.csv"))
+            {
+                string sor;
+                while ((sor = sr.ReadLine()) != null)
+                {
+                    string[] adatok = sor.Split(';'); 
+                    if (adatok.Length == 2)
+                    {
+                        string szerzo = adatok[0];
+                        string tartalom = adatok[1];
+                        bLista.Add(new Bejegyzes(szerzo, tartalom));
+                    }
+                }
+            }
+
+            Console.WriteLine("\n bejegyzések:");
+            for (int i = 0; i < bLista.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. bejegyzés:\n{bLista[i]}");
+            }
+
+        
+            Console.Write("\nAdj meg egy új tartalmat: ");
+            string ut = Console.ReadLine();
+
+            
+            if (bLista.Count >= 2)
+            {
+                bLista[1].Tartalom = ut;
+                bLista[1].Szerkesztve = DateTime.Now;
+                Console.WriteLine("\n sikeresen módosítva.");
+            }
+       
+
+           
+            Console.WriteLine("\n valtoztatott:");
+            for (int i = 0; i < bLista.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. bejegyzés:\n{bLista[i].ToString()}");
+            }
         }
+    
             static void Main(string[] args)
         {
-            feladat04();
-           
+
+            feladat05();
           Console.ReadKey();
         }
 
