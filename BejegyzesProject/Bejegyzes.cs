@@ -30,7 +30,7 @@ namespace BejegyzesProject
         public override string ToString()
         {
             string szerkesztes = Szerkesztve != Letrejott ? $"Szerkeszve: {Szerkesztve}" : "";
-            return $"{Szerzo}–{Likeok}–{Letrejott}{szerkesztes}: {Tartalom}+";
+            return $"{Szerzo}–{Likeok}–{Letrejott}{szerkesztes}: {Tartalom}";
         }
 
     }
