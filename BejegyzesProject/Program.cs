@@ -80,11 +80,47 @@ namespace BejegyzesProject
         }
         static void feladat04()
         {
+            List<Bejegyzes> bLista = new List<Bejegyzes>();
+
+           
+            using (StreamReader sr = new StreamReader("bejegyzesek.csv"))
+            {
+                string sor;
+                while ((sor = sr.ReadLine()) != null)
+                {
+                    string[] adatok = sor.Split(';');
+                    if (adatok.Length == 2)
+                    {
+                        string szerzo = adatok[0];
+                        string tartalom = adatok[1];
+                        bLista.Add(new Bejegyzes(szerzo, tartalom));
+                    }
+                }
+            }
+
+            
+            Random random = new Random();
+            int oLikeok = bLista.Count * 20;
+
+            for (int i = 0; i < oLikeok; i++)
+            {
+                int index = random.Next(bLista.Count); 
+                bLista[index].Like(); 
+            }
+
+            Console.WriteLine("\nbejegyzések:");
+            foreach (Bejegyzes bejegyzes in bLista)
+            {
+                Console.WriteLine(bejegyzes.ToString());
+            }
+        }
+        static void feladat05()
+        {
 
         }
             static void Main(string[] args)
         {
-            feladat03();
+            feladat04();
            
           Console.ReadKey();
         }
