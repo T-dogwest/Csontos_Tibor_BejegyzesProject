@@ -26,6 +26,13 @@ namespace BejegyzesProject
         {
             Likeok++;
         }
+
+        public override string ToString()
+        {
+            string szerkesztes = Szerkesztve != Letrejott ? $"Szerkeszve: {Szerkesztve}" : "";
+            return $"{Szerzo}–{Likeok}–{Letrejott}{szerkesztes}: {Tartalom}+";
+        }
+
     }
 
 }
