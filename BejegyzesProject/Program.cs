@@ -254,11 +254,43 @@ namespace BejegyzesProject
 
             Console.WriteLine($"15 like alatti bejegyzések száma: {keves}");
         }
+        static void feladat09()
+        {
+            List<Bejegyzes> bLista = new List<Bejegyzes>();
+
+
+            using (StreamReader sr = new StreamReader("bejegyzesek.csv"))
+            {
+                string sor;
+                while ((sor = sr.ReadLine()) != null)
+                {
+                    string[] adatok = sor.Split(';');
+                    if (adatok.Length == 2)
+                    {
+                        string szerzo = adatok[0];
+                        string tartalom = adatok[1];
+                        bLista.Add(new Bejegyzes(szerzo, tartalom));
+                    }
+                }
+            }
+            List<Bejegyzes> rLista = bLista.OrderByDescending(b => b.Likeok).ToList();
+
+          
+            using (StreamWriter sw = new StreamWriter("bejegyzesek_rendezett.txt"))
+            {
+                foreach (var bejegyzes in rLista)
+                {
+                    sw.Write(bejegyzes.ToString());
+                }
+            }
+
+            Console.WriteLine(" bejegyzések  a 'bejegyzesek_rendezett.txt' fájlba.");
+        }
     
             static void Main(string[] args)
         {
            
-            feladat07();
+            feladat03();
             
           Console.ReadKey();
         }
