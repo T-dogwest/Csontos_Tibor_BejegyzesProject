@@ -157,7 +157,7 @@ namespace BejegyzesProject
             Console.WriteLine("\n valtoztatott:");
             for (int i = 0; i < bLista.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. bejegyzés:\n{bLista[i].ToString()}");
+                Console.WriteLine($"{i + 1}. bejegyzés:\n{bLista[i]}");
             }
         }
     
